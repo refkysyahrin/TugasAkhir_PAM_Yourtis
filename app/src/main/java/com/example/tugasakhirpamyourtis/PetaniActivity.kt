@@ -1,35 +1,51 @@
 package com.example.tugasakhirpamyourtis
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class PetaniActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_petani)
 
-        // Ambil Data Nama dari Intent (yang dikirim LoginActivity)
+        // 1. Ambil Nama User dari Intent (Data kiriman dari Login)
         val username = intent.getStringExtra("USERNAME") ?: "Petani"
 
-        findViewById<TextView>(R.id.tvWelcomeName).text = "Halo, $username"
+        // Tampilkan Nama di Layar
+        val tvWelcome = findViewById<TextView>(R.id.tvWelcomeName)
+        tvWelcome.text = "Halo, $username!"
 
-        // Tombol Logout
-        findViewById<Button>(R.id.btnLogout).setOnClickListener {
-            // Hapus sesi (opsional) dan kembali ke Login
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-        }
-
-        // Tombol Kelola Produk -> Pindah ke TambahSayurActivity
-        findViewById<Button>(R.id.btnKelolaProduk).setOnClickListener {
+        // 2. LOGIKA TOMBOL: Kelola Produk
+        // Ini akan membuka halaman TambahSayurActivity yang baru saja Anda buat
+        val btnKelola = findViewById<Button>(R.id.btnKelolaProduk)
+        btnKelola.setOnClickListener {
             val intent = Intent(this, TambahSayurActivity::class.java)
             startActivity(intent)
         }
+
+        // 3. LOGIKA TOMBOL: Logout (Keluar)
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            logout()
+        }
+    }
+
+    private fun logout() {
+        // Hapus data sesi di memori HP (SharedPreferences)
+        val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+        sharedPref.edit().clear().apply()
+
+        // Kembali ke Halaman Login & Hapus Riwayat Halaman (agar tidak bisa di-Back)
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+
+        Toast.makeText(this, "Berhasil Keluar", Toast.LENGTH_SHORT).show()
+        finish()
     }
 }
