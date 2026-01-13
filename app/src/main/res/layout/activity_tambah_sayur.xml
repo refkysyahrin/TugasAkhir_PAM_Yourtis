@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah Sayur Baru"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etNamaSayur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Sayur (cth: Wortel)"
+            android:background="@android:drawable/edit_text"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etHargaSayur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga per Kg (Rp)"
+            android:inputType="number"
+            android:background="@android:drawable/edit_text"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etStokSayur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stok Tersedia (Kg)"
+            android:inputType="number"
+            android:background="@android:drawable/edit_text"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etDeskripsiSayur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deskripsi Produk"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top"
+            android:background="@android:drawable/edit_text"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Foto Produk (Klik untuk pilih)"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:scaleType="centerInside"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnSimpanSayur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Produk"
+            android:backgroundTint="#2E7D32"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+</ScrollView>
