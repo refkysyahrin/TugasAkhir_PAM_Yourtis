@@ -26,9 +26,10 @@ class PetaniActivity : AppCompatActivity() {
             finish()
         }
 
-        // Tombol Kelola Produk (Nanti kita buat halamannya)
+        // Tombol Kelola Produk -> Pindah ke TambahSayurActivity
         findViewById<Button>(R.id.btnKelolaProduk).setOnClickListener {
-            // TODO: Pindah ke halaman Tambah Sayur
+            val intent = Intent(this, TambahSayurActivity::class.java)
+            startActivity(intent)
         }
     }
 }
