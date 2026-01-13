@@ -68,5 +68,10 @@ class LoginActivity : AppCompatActivity() {
             })
         }
 
-
+// 3. Aksi Tombol Register (Pindah Halaman)
+        tvRegister.setOnClickListener {
+            // Nanti kita buat RegisterActivity
+            Toast.makeText(this, "Menuju halaman daftar...", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
