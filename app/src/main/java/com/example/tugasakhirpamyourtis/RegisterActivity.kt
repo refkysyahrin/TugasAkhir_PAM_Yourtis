@@ -35,6 +35,48 @@ class RegisterActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, roles)
         spinnerRole.adapter = adapter
 
+        // 3. Aksi Tombol Daftar
+        btnRegister.setOnClickListener {
+            val username = etUsername.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val noHp = etNoHp.text.toString().trim()
+            val alamat = etAlamat.text.toString().trim()
+            val role = spinnerRole.selectedItem.toString() // Ambil role yang dipilih
+
+            // Validasi Input
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || noHp.isEmpty() || alamat.isEmpty()) {
+                Toast.makeText(this, "Semua kolom wajib diisi!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // --- KIRIM KE API REGISTER ---
+            val requestData = mapOf(
+                "username" to username,
+                "email" to email,
+                "password" to password,
+                "no_hp" to noHp,
+                "alamat" to alamat,
+                "role" to role
+            )
+
+            RetrofitClient.instance.register(requestData).enqueue(object : Callback<RegisterResponse> {
+                override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@RegisterActivity, "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show()
+                        finish() // Kembali ke halaman Login otomatis
+                    } else {
+                        // Jika gagal (misal email kembar)
+                        Toast.makeText(this@RegisterActivity, "Gagal: Email mungkin sudah terdaftar.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity, "Error Koneksi: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
 
     }
 }
