@@ -25,4 +25,48 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvRegister = findViewById<TextView>(R.id.tvRegister)
 
+        // 2. Aksi Tombol Login
+        btnLogin.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email dan Password wajib diisi!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // --- PROSES LOGIN KE API ---
+            val requestData = mapOf(
+                "email" to email,
+                "password" to password
+            )
+
+            RetrofitClient.instance.login(requestData).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    if (response.isSuccessful) {
+                        val loginResponse = response.body()
+                        if (loginResponse != null && loginResponse.data != null) {
+
+                            // LOGIN BERHASIL!
+                            Toast.makeText(this@LoginActivity, "Login Berhasil: ${loginResponse.data.username}", Toast.LENGTH_LONG).show()
+
+                            // Cek Role: Petani atau Pembeli?
+                            val role = loginResponse.data.role
+
+                            // TODO: Nanti kita arahkan ke Dashboard yang sesuai
+                            // Untuk sekarang kita tampilkan pesan saja dulu
+                            Toast.makeText(this@LoginActivity, "Masuk sebagai: $role", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Login Gagal! Cek Email/Password.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+
 }
