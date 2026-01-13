@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         val tvLoginLink = findViewById<TextView>(R.id.tvLoginLink)
 
-// 2. Isi Pilihan Role ke Spinner
+        // 2. Isi Pilihan Role ke Spinner
         val roles = arrayOf("Pembeli", "Petani")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, roles)
         spinnerRole.adapter = adapter
@@ -77,6 +77,9 @@ class RegisterActivity : AppCompatActivity() {
             })
         }
 
-
+        // 4. Link Kembali ke Login
+        tvLoginLink.setOnClickListener {
+            finish() // Menutup activity ini dan kembali ke Login
+        }
     }
 }
