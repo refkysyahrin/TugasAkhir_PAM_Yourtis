@@ -48,10 +48,33 @@ class LoginActivity : AppCompatActivity() {
                         if (loginResponse != null && loginResponse.data != null) {
 
                             // LOGIN BERHASIL!
-                            Toast.makeText(this@LoginActivity, "Login Berhasil: ${loginResponse.data.username}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@LoginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
-                            // Cek Role: Petani atau Pembeli?
                             val role = loginResponse.data.role
+                            val username = loginResponse.data.username
+                            val idUser = loginResponse.data.id_user
+
+                            // Simpan ID User (Penting untuk transaksi nanti)
+                            val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+                            with(sharedPref.edit()) {
+                                putInt("ID_USER", idUser)
+                                putString("ROLE", role)
+                                apply()
+                            }
+
+                            // Cek Role dan Arahkan
+                            if (role == "Petani") {
+                                val intent = Intent(this@LoginActivity, PetaniActivity::class.java)
+                                intent.putExtra("USERNAME", username)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this@LoginActivity, PembeliActivity::class.java)
+                                intent.putExtra("USERNAME", username)
+                                startActivity(intent)
+                            }
+
+                            // Tutup halaman login agar tidak bisa back
+                            finish()
 
                             // TODO: Nanti kita arahkan ke Dashboard yang sesuai
                             // Untuk sekarang kita tampilkan pesan saja dulu
