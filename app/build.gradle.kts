@@ -60,9 +60,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    // 1. Retrofit & Gson (Wajib untuk API)
+    // Retrofit & Gson (Wajib untuk API)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    // 2. Logging (Untuk mengintip data yang dikirim/diterima di Logcat)
+    // Logging (Untuk mengintip data yang dikirim/diterima di Logcat)
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    // Library untuk load gambar dari internet
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
