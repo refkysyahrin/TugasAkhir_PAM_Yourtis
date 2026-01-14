@@ -2,33 +2,48 @@ package com.example.tugasakhirpamyourtis.api
 
 import com.example.tugasakhirpamyourtis.model.LoginResponse
 import com.example.tugasakhirpamyourtis.model.RegisterResponse
+import com.example.tugasakhirpamyourtis.model.Sayur // Pastikan model Sayur sudah dibuat
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import retrofit2.http.POST
 import retrofit2.Call
-import retrofit2.http.Multipart
-import retrofit2.http.Part
-
+import retrofit2.http.*
 
 interface ApiService {
-    // Endpoint: http://10.0.2.2:3000/api/auth/register
+
+    // 1. REGISTER
     @POST("auth/register")
-    fun register(@Body data: Map<String, String>): Call<RegisterResponse>
+    fun register(@Body request: Map<String, String>): Call<RegisterResponse>
 
-    // Endpoint: http://10.0.2.2:3000/api/auth/login
+    // 2. LOGIN
     @POST("auth/login")
-    fun login(@Body data: Map<String, String>): Call<LoginResponse>
+    fun login(@Body request: Map<String, String>): Call<LoginResponse>
 
-    // UPLOAD SAYUR
+    // 3. UPLOAD SAYUR (MULTIPART)
     @Multipart
-    @POST("sayur/tambah")
+    @POST("sayur")
     fun tambahSayur(
         @Part("id_petani") idPetani: RequestBody,
-        @Part("nama_sayur") namaSayur: RequestBody,
+        @Part("nama_sayur") nama: RequestBody,
         @Part("harga") harga: RequestBody,
         @Part("stok") stok: RequestBody,
         @Part("deskripsi") deskripsi: RequestBody,
         @Part gambar: MultipartBody.Part
-    ): Call<com.example.tugasakhirpamyourtis.model.RegisterResponse>
+    ): Call<RegisterResponse>
+
+    // 4. AMBIL DAFTAR SAYUR (GET) -> FITUR BARU
+    @GET("sayur")
+    fun getDaftarSayur(): Call<List<Sayur>>
+
+    // 5. TRANSAKSI BELI (Sesuaikan dengan tb_transaksi)
+    @FormUrlEncoded
+    @POST("transaksi")
+    fun beliSayur(
+        @Field("id_pembeli") idPembeli: Int, // Sesuai kolom database
+        @Field("id_sayur") idSayur: Int,     // Dikirim untuk disimpan (mungkin ke tb_detail_transaksi)
+        @Field("jumlah") jumlah: Int,        // Jumlah beli
+        @Field("total_bayar") totalBayar: Int, // Sesuai kolom database
+        @Field("metode_kirim") metodeKirim: String, // "Diantar"
+        @Field("metode_bayar") metodeBayar: String, // "COD"
+        @Field("status") status: String      // "Pending"
+    ): Call<RegisterResponse>
 }
