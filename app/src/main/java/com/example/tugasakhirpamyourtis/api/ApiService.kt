@@ -2,6 +2,7 @@ package com.example.tugasakhirpamyourtis.api
 
 import com.example.tugasakhirpamyourtis.model.LoginResponse
 import com.example.tugasakhirpamyourtis.model.RegisterResponse
+import com.example.tugasakhirpamyourtis.model.RiwayatTransaksi
 import com.example.tugasakhirpamyourtis.model.Sayur // Pastikan model Sayur sudah dibuat
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -46,4 +47,10 @@ interface ApiService {
         @Field("metode_bayar") metodeBayar: String, // "COD"
         @Field("status") status: String      // "Pending"
     ): Call<RegisterResponse>
+
+    // 6. AMBIL RIWAYAT (GET)
+    @GET("transaksi/{id_user}")
+    fun getRiwayat(
+        @Path("id_user") idUser: Int
+    ): Call<List<RiwayatTransaksi>>
 }
