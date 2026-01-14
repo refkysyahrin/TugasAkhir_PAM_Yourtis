@@ -5,5 +5,6 @@ data class RiwayatTransaksi(
     val tgl_transaksi: String,
     val total_bayar: Int,
     val status: String,
-    val metode_bayar: String
+    val metode_bayar: String,
+    val nama_pembeli: String? = null
 )

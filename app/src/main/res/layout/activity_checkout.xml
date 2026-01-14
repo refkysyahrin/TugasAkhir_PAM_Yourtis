@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout Pesanan"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvNamaProduk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Sayur"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tvRincianHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 15.000 x 2 Kg"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTotalCheckout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total: Rp 30.000"
+                    android:textColor="#2E7D32"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metode Pengiriman"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgPengiriman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rbDiantar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diantar"
+                android:checked="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbPickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pickup (Ambil Sendiri)"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metode Pembayaran"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgPembayaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/rbCOD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COD (Bayar Ditempat)"
+                android:checked="true"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbTransfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transfer Bank"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/layoutRekening"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFF8E1"
+            android:padding="12dp"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silakan Transfer ke:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BCA - 1234567890\na.n. Petani Sayur"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBuatPesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BUAT PESANAN"
+            android:backgroundTint="#2E7D32"
+            android:padding="14dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+</ScrollView>

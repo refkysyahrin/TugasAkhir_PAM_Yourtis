@@ -1,5 +1,6 @@
 package com.example.tugasakhirpamyourtis.api
 
+import com.example.tugasakhirpamyourtis.model.DashboardSummary
 import com.example.tugasakhirpamyourtis.model.LoginResponse
 import com.example.tugasakhirpamyourtis.model.RegisterResponse
 import com.example.tugasakhirpamyourtis.model.RiwayatTransaksi
@@ -53,4 +54,31 @@ interface ApiService {
     fun getRiwayat(
         @Path("id_user") idUser: Int
     ): Call<List<RiwayatTransaksi>>
+
+    // 7. PETANI LIHAT PESANAN MASUK (GET)
+    @GET("transaksi/petani/semua")
+    fun getPesananPetani(): Call<List<RiwayatTransaksi>>
+
+    // 8. AMBIL DATA DASHBOARD (Ringkasan)
+    @GET("transaksi/admin/summary")
+    fun getDashboardSummary(): Call<DashboardSummary>
+
+    // 9. UPDATE SAYUR (PUT)
+    // Menggunakan Multipart karena bisa jadi update foto juga
+    @Multipart
+    @PUT("sayur/{id}")
+    fun updateSayur(
+        @Path("id") idSayur: Int,
+        @Part("nama_sayur") nama: RequestBody,
+        @Part("harga") harga: RequestBody,
+        @Part("stok") stok: RequestBody,
+        @Part("deskripsi") deskripsi: RequestBody,
+        @Part gambar: MultipartBody.Part? // Bisa null jika tidak ganti foto
+    ): Call<RegisterResponse>
+
+    // 10. HAPUS SAYUR (DELETE)
+    @DELETE("sayur/{id}")
+    fun hapusSayur(
+        @Path("id") idSayur: Int
+    ): Call<RegisterResponse>
 }

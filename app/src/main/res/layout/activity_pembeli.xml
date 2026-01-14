@@ -3,38 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvWelcomePembeli"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Katalog Sayur Segar"
-        android:textSize="24sp"
+        android:text="Selamat Datang!"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#2E7D32"
         android:layout_marginBottom="16dp"/>
 
     <TextView
-        android:id="@+id/tvWelcomePembeli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selamat Belanja!"
-        android:textSize="18sp"
-        android:layout_marginBottom="32dp"/>
+        android:text="Daftar Sayur Segar"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSayur"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btnRiwayat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="(Daftar sayur akan muncul di sini)"
-        android:textColor="#888888"/>
+        android:text="LIHAT RIWAYAT PESANAN"
+        android:backgroundTint="#FF9800"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"/>
 
     <Button
         android:id="@+id/btnLogoutPembeli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="LOGOUT / KELUAR"
         android:backgroundTint="#D32F2F"
-        android:layout_marginTop="32dp"/>
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
 
 </LinearLayout>

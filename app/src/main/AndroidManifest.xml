@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
@@ -17,30 +16,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TugasAkhirPAMYourtis"
         android:usesCleartextTraffic="true">
+
+
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".KelolaSayurActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".EditSayurActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".RiwayatActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DetailSayurActivity"
+            android:exported="false" />
+
         <activity
             android:name=".TambahSayurActivity"
             android:exported="false" />
+
         <activity
             android:name=".PembeliActivity"
             android:exported="false" />
+
         <activity
             android:name=".PetaniActivity"
             android:exported="false" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
